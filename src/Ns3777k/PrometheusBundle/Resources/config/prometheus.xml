@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults public="false" />
+
+        <service id="Prometheus\Storage\Adapter" abstract="true" />
+
+        <service id="Prometheus\CollectorRegistry" class="Prometheus\CollectorRegistry">
+            <argument type="service" id="Prometheus\Storage\Adapter" />
+        </service>
+
+        <service id="Ns3777k\PrometheusBundle\Metrics\RendererInterface" class="Ns3777k\PrometheusBundle\Metrics\RenderTextFormat" />
+
+        <service id="Ns3777k\PrometheusBundle\Metrics\NamespacedCollectorRegistry" class="Ns3777k\PrometheusBundle\Metrics\NamespacedCollectorRegistry">
+            <argument type="service" key="$collectorRegistry" id="Prometheus\CollectorRegistry" />
+            <argument type="string" key="$namespace" />
+        </service>
+
+        <service id="Ns3777k\PrometheusBundle\Metrics\CollectorRegistryInterface" alias="Ns3777k\PrometheusBundle\Metrics\NamespacedCollectorRegistry" />
+
+        <service id="Ns3777k\PrometheusBundle\Controller\MetricsController" class="Ns3777k\PrometheusBundle\Controller\MetricsController">
+            <argument type="service" id="Ns3777k\PrometheusBundle\Metrics\NamespacedCollectorRegistry" />
+            <argument type="service" id="Ns3777k\PrometheusBundle\Metrics\RendererInterface" />
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <service id="Ns3777k\PrometheusBundle\EventListener\MetricsListener" class="Ns3777k\PrometheusBundle\EventListener\MetricsListener">
+            <argument key="$registry" type="service" id="Ns3777k\PrometheusBundle\Metrics\NamespacedCollectorRegistry" />
+            <argument key="$ignoredRoutes" type="collection" />
+            <tag name="kernel.event_listener" event="kernel.request" />
+            <tag name="kernel.event_listener" event="kernel.terminate" />
+        </service>
+    </services>
+</container>

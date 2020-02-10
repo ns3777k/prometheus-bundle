@@ -1,0 +1,27 @@
+{
+    "name": "ns3777k/prometheus-bundle",
+    "description": "Symfony bundle for collecting and exposing prometheus metrics",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ns3777k\\PrometheusBundle\\": "src/Ns3777k/PrometheusBundle/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita Safonov",
+            "email": "ns3777k@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/http-kernel": "^4.3.0|^5.0.0",
+        "endclothing/prometheus_client_php": "^1.0",
+        "php": "^7.1",
+        "symfony/config": "^4.3.0|^5.0.0",
+        "symfony/dependency-injection": "^4.3.0|^5.0.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16"
+    }
+}
