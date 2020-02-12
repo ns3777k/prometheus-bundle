@@ -1,0 +1,26 @@
+language: php
+
+sudo: false
+
+php:
+  - '7.1'
+  - '7.2'
+  - '7.3'
+  - '7.4'
+
+before_install:
+  - composer self-update
+
+install:
+  - rm composer.lock
+  - travis_retry composer update --prefer-dist
+
+script:
+  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${COMMIT_RANGE}")
+  - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then EXTRA_ARGS=$(printf -- '--path-mode=intersection\n--\n%s' "${CHANGED_FILES}"); else EXTRA_ARGS=''; fi
+  - ./vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no ${EXTRA_ARGS}
+  - ./vendor/bin/phpunit -v
+
+cache:
+  directories:
+    - $HOME/.composer/cache
