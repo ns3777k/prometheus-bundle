@@ -36,11 +36,11 @@ class Ns3777kPrometheusExtension extends Extension
         $container->getDefinition(NamespacedCollectorRegistry::class)
             ->replaceArgument('$namespace', $configuration['namespace']);
 
-        if (!$configuration['listener']) {
+        if (!$configuration['listener']['enabled']) {
             $container->removeDefinition(MetricsListener::class);
         } else {
             $container->getDefinition(MetricsListener::class)
-                ->replaceArgument('$ignoredRoutes', $configuration['ignored_routes']);
+                ->replaceArgument('$ignoredRoutes', $configuration['listener']['ignored_routes']);
         }
 
         $adapterDefinition = $container->getDefinition(Adapter::class)

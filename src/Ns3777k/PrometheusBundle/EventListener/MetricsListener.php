@@ -26,7 +26,7 @@ class MetricsListener
     /**
      * @var float
      */
-    private $startTime = 0.0;
+    private $startTime;
 
     /**
      * MetricsListener constructor.

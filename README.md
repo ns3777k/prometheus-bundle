@@ -57,6 +57,9 @@ Usually you don't wanna collect the metrics for routes like `_wdt` and `metrics`
 (that's the route for `/metrics`) and that's where `listener.ignored_routes`
 comes in.
 
+If you use grafana to render graphs, you can import sample dashboard from ``
+directory (it uses empty namespace).
+
 ### Collect own metrics
 
 Builtin listener covers only basic information about the request and response.
@@ -103,5 +106,3 @@ Remember that when you add `/metrics` route it becomes publicly available from
 the internet.
 
 **It's you job to restrict access to it (using nginx for example).**
-
-## How to use with grafana?

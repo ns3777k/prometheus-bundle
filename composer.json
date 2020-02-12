@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "Ns3777k\\PrometheusBundle\\": "src/Ns3777k/PrometheusBundle/"
-        }
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "authors": [
         {
@@ -22,6 +25,7 @@
         "symfony/dependency-injection": "^4.3.0|^5.0.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^9.0"
     }
 }
