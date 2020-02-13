@@ -86,6 +86,32 @@ Usually you don't wanna collect the metrics for routes like `_wdt` and `metrics`
 (that's the route for `/metrics`) and that's where `listener.ignored_routes`
 comes in.
 
+Common PromQL queries for the listener:
+
+- HTTP Request Rate
+
+```
+rate(request_duration_seconds_sum[5m]) / rate(request_duration_seconds_count[5m])
+```
+
+- HTTP Successful Responses
+
+```
+request_duration_seconds_count{code=~"(2|3).*"}
+```
+
+- HTTP Failed Responses
+
+```
+request_duration_seconds_count{code=~"(4|5).*"}
+```
+
+- HTTP Success Response Time 5m 95p
+
+```
+histogram_quantile(0.95, rate(request_duration_seconds_bucket{code=~"(2|3).*"}[5m]))
+```
+
 ### Collect own metrics
 
 Builtin listener covers only basic information about the request and response.
@@ -142,29 +168,3 @@ Remember that when you add `/metrics` route it becomes publicly available from
 the internet.
 
 **It's you job to restrict access to it (using nginx for example).**
-
-## Common PromQL
-
-- HTTP Request Rate
-
-```
-rate(request_duration_seconds_sum[5m]) / rate(request_duration_seconds_count[5m])
-```
-
-- HTTP Successful Responses
-
-```
-request_duration_seconds_count{code=~"(2|3).*"}
-```
-
-- HTTP Failed Responses
-
-```
-request_duration_seconds_count{code=~"(4|5).*"}
-```
-
-- HTTP Success Response Time 5m 95p
-
-```
-histogram_quantile(0.95, rate(request_duration_seconds_bucket{code=~"(2|3).*"}[5m]))
-```
