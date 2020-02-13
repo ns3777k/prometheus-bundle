@@ -12,7 +12,6 @@ before_install:
   - composer self-update
 
 install:
-  - rm composer.lock
   - travis_retry composer update --prefer-dist
 
 script:
