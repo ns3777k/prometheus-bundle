@@ -1,6 +1,6 @@
 # Prometheus bundle
 
-Current status: **Hard Development**
+[![Build Status](https://travis-ci.org/ns3777k/prometheus-bundle.svg?branch=master)](https://travis-ci.org/ns3777k/prometheus-bundle)
 
 ## Requirements
 
@@ -72,6 +72,14 @@ But most of the time you wanna collect your own metrics. It's easy to do using
 Histogram example:
 
 ```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Weather;
+
+use Ns3777k\PrometheusBundle\Metrics\CollectorRegistryInterface;
+
 class WeatherClient
 {
     private $registry;
@@ -86,12 +94,14 @@ class WeatherClient
         $histogram = $this->registry->getOrRegisterHistogram(
             'weather_request_duration_seconds',
             'Weather request duration with response information',
-            ['route', 'code', 'method']
+            ['region']
         );
 
+        $start = microtime(true);
         // do request
+        $duration = microtime(true) - $start;
 
-        $histogram->observe($duration, [$url, $statusCode, $method]);
+        $histogram->observe($duration, [$region]);
     }
 
 }
