@@ -1,14 +1,43 @@
 # Prometheus bundle
 
 [![Build Status](https://travis-ci.org/ns3777k/prometheus-bundle.svg?branch=master)](https://travis-ci.org/ns3777k/prometheus-bundle)
+[![codecov](https://codecov.io/gh/ns3777k/prometheus-bundle/branch/master/graph/badge.svg)](https://codecov.io/gh/ns3777k/prometheus-bundle)
 
 ## Requirements
 
+- PHP 7.3+
+- Symfony 4+
+
 ## Installing
+
+There are 2 ways to install the bundle: automatically with flex or manually.
+
+### Using symfony flex
+
+```shell script
+$ composer require ns3777k/prometheus-bundle
+```
 
 ### Manually
 
-### Using symfony flex
+1. Require the package:
+
+```shell script
+$ composer require ns3777k/prometheus-bundle
+```
+
+2. Register the bundle in `config/bundles.php`:
+
+```php
+<?php
+
+return [
+    // ...
+    Ns3777k\PrometheusBundle\Ns3777kPrometheusBundle::class => ['all' => true],
+];
+```
+
+3. Configure (see below)
 
 ## Usage
 
