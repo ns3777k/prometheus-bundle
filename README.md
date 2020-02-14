@@ -66,12 +66,19 @@ ns3777k_prometheus:
     database:
 ```
 
-`config/routes.yaml`:
+To register the metrics route, add to `config/routes.yaml`:
 
 ```yaml
 metrics:
   path: /metrics
   controller: 'Ns3777k\PrometheusBundle\Controller\MetricsController::prometheus'
+```
+
+or:
+
+```yaml
+metrics:
+  resource: '@Ns3777kPrometheusBundle/Resources/config/routing.xml'
 ```
 
 ### Builtin listener
