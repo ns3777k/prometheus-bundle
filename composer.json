@@ -1,7 +1,7 @@
 {
     "name": "ns3777k/prometheus-bundle",
     "description": "Symfony bundle for collecting and exposing prometheus metrics",
-    "type": "library",
+    "type": "symfony-bundle",
     "license": "MIT",
     "autoload": {
         "psr-4": {
