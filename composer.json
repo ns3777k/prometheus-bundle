@@ -8,7 +8,7 @@
             "Ns3777k\\PrometheusBundle\\": "src/Ns3777k/PrometheusBundle/"
         },
         "exclude-from-classmap": [
-            "/Tests/"
+            "**/Tests/"
         ]
     },
     "authors": [
