@@ -4,14 +4,13 @@
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
          bootstrap="vendor/autoload.php">
-
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
 
     <testsuites>
         <testsuite name="Ns3777kPrometheusBundle Test Suite">
-            <directory>./src/Ns3777k/PrometheusBundle/Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
@@ -22,11 +21,7 @@
 
     <filter>
         <whitelist>
-            <directory>.</directory>
-            <exclude>
-                <directory>./src/Ns3777k/PrometheusBundle/Tests</directory>
-                <directory>./vendor</directory>
-            </exclude>
+            <directory>src/</directory>
         </whitelist>
     </filter>
 </phpunit>
