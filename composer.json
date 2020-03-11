@@ -5,11 +5,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ns3777k\\PrometheusBundle\\": "src/Ns3777k/PrometheusBundle/"
-        },
-        "exclude-from-classmap": [
-            "**/Tests/"
-        ]
+            "Ns3777k\\PrometheusBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ns3777k\\PrometheusBundle\\Tests\\": "tests/"
+        }
     },
     "authors": [
         {
